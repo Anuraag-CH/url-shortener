@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shorten Url</title>
+    <link rel="stylesheet" href="Frontend/styles.css" />
+    <script>
+      function clickSubmit() {
+        const url = "/url";
+        const data = {
+          url: document.getElementById("url").value,
+        };
+
+        const options = {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        };
+
+        fetch(url, options)
+          .then((response) => {
+            return response.json();
+          })
+          .then((responseData) => {
+            // Process the response data
+            document.getElementById("mainarea").innerHTML = "";
+            const link = document.createElement("a");
+            link.href = responseData;
+            link.textContent = responseData;
+            link.target = "_blank";
+            document.getElementById("mainarea").appendChild(link);
+          })
+          .catch((error) => {
+            // Handle any errors that occurred during the request
+            console.error("Error:", error);
+          });
+      }
+    </script>
+  </head>
+  <body>
+    <div class="main">
+      Shorten your Url
+      <br />
+      <input type="text" id="url" />
+      <br />
+
+      <button type="button" onclick="clickSubmit()">Submit</button>
+      <div id="mainarea"></div>
+    </div>
+  </body>
+</html>
