@@ -46,11 +46,10 @@ app.mount("/Frontend", StaticFiles(directory="Frontend"), name="Frontend")
 @app.on_event("startup")
 async def startup():
     mongo_url = os.getenv("MONGO_URL")
+    db = os.getenv("DB_NAME")
 
     # Connect to MongoDB
-    connect(
-        host=mongo_url
-    )
+    connect(db=db, host=mongo_url)
 
 
 @app.on_event("shutdown")
