@@ -33,9 +33,8 @@ def generate_random_keyword(length):
 
 app = FastAPI()
 
-frontend_abs_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "Frontend"))
-print(frontend_abs_path)
-app.mount("/Frontend", StaticFiles(directory=frontend_abs_path), name="Frontend")
+
+app.mount("/Frontend", StaticFiles(directory="Frontend"), name="Frontend")
 
 # app.add_middleware(
 #     CORSMiddleware,
@@ -99,7 +98,7 @@ def redirect_url(key):
 
 @app.get("/")
 async def get_html_file():
-    file_path = os.path.join(frontend_abs_path,'index.html')
+    file_path = "Frontend/index.html"
     return FileResponse(file_path, media_type="text/html")
 
 if __name__ == "__main__":
