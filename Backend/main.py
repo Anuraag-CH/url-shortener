@@ -33,7 +33,7 @@ def generate_random_keyword(length):
 
 app = FastAPI()
 
-app.mount("/Frontend", StaticFiles(directory="Frontend"), name="Frontend")
+# app.mount("/Frontend", StaticFiles(directory="../Frontend"), name="Frontend")
 
 # app.add_middleware(
 #     CORSMiddleware,
@@ -97,6 +97,8 @@ def redirect_url(key):
 
 @app.get("/")
 async def get_html_file():
-    # Assuming your HTML file is located in a directory named "static"
-    file_path = "Frontend/index.html"
+    file_path = "../Frontend/index.html"
     return FileResponse(file_path, media_type="text/html")
+
+if __name__ == "__main__":
+    uvicorn.run(app)
