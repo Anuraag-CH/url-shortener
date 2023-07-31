@@ -33,7 +33,7 @@ def generate_random_keyword(length):
 
 app = FastAPI()
 
-# app.mount("/Frontend", StaticFiles(directory="../Frontend"), name="Frontend")
+app.mount("/Frontend", StaticFiles(directory="../Frontend"), name="Frontend")
 
 # app.add_middleware(
 #     CORSMiddleware,
